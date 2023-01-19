@@ -20,17 +20,25 @@ public class Server_core : MonoBehaviourPunCallbacks
 
     public void CreateRoom()
     {
+        PlayerPrefs.SetInt("selectCha", Select_player.Instance.listCount);
         PhotonNetwork.CreateRoom(createInput.text);
     }
 
     public void JoinRoom()
     {
+        PlayerPrefs.SetInt("selectCha", Select_player.Instance.listCount);
         PhotonNetwork.JoinRoom(joinInput.text);
     }
 
     public override void OnJoinedRoom()
     {
         PhotonNetwork.LoadLevel("SampleScene");
+    }
+
+    public void disconnect()
+    {
+        PhotonNetwork.Disconnect();
+        PhotonNetwork.LoadLevel("lobby");
     }
 
 }
